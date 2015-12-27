@@ -1,0 +1,54 @@
+<%= form_for @user, data: {abide: ''} do |f| %>
+    <% if @user.errors.any? %>
+        <div class="row panel callout radius">
+          <p>Aşağıdaki hataları düzeltip, tekrar deneyin.</p>
+          <ul class="square">
+            <% @user.errors.full_messages.each do |m| %>
+                <li><%= m %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="row">
+      <div class="large-6 columns">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name,
+                         #html 5 te alanın kontrolü için require true olması gerekir
+                         required: true,
+                         #alpha foundation frameworkünün hazır regexp ifadesini içerir
+                         pattern: :alpha %>
+        <!-- burası önceden <small class='error'>mesaj</small> şeklindeydi
+             çoğu yerde kullanıldığı için yardımcı metod şekline getirildi. -->
+        <%= show_error_message %>
+      </div>
+      <div class="large-6 columns">
+        <%= f.label :last_name%>
+        <%= f.text_field :last_name, required: true, pattern: :alpha %>
+        <%= show_error_message %>
+      </div>
+      <div class="large-12 columns">
+        <%= f.label :username %>
+        <%= f.text_field :username, required: true, pattern: :alpha %>
+        <%= show_error_message %>
+      </div>
+      <div class="large-12 columns">
+        <%= f.label :email %>
+        <%= f.email_field :email, required: true, pattern: :email %>
+        <%= show_error_message %>
+      </div>
+      <!-- TODO:parolaların eşleşmesi ve karakter uzunluk kontrolü eklenecek -->
+      <% if params[:action] == 'new' || params[:action] == 'create' %>
+          <div class="large-6 columns">
+            <%= f.label :password %>
+            <%= f.password_field :password, required: true %>
+          </div>
+          <div class="large-6 columns">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, required: true %>
+          </div>
+      <% end %>
+      <div class="large-12 columns">
+        <%= f.submit class: "medium button right" %>
+      </div>
+    </div>
+<% end %>
