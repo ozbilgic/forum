@@ -20,4 +20,15 @@ Rails.application.routes.draw do
   get '/:id', to: 'users#show', as: :profile
   get '/:id/edit', to: 'users#edit', as: :edit_profile
   #-------------------------------------------------------------
+  
+  #konular yolları----------------------------------------------
+  resources :forums, only: [:index, :show], path: 'forumlar' do
+    resources :topics, only: [:new, :create], path: 'konular', 
+                                              path_names: {new: 'yeni'}
+  end
+  
+  resources :topics, except: [:index, :new, :create], 
+                     path: 'konular', 
+                     path_names: {edit: 'duzenle'}
+  #-------------------------------------------------------------
 end

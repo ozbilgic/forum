@@ -1,0 +1,29 @@
+<!-- syntax_highlighting: html -->
+<div class="large-12 medium-12 medium-centered columns">
+  <%= form_for([@forum, @topic]) do |f| %>
+    <% if @topic.errors.any? %>
+      <div class="row panel callout radius">
+        <p>Aşağıdaki hataları düzeltip tekrar deneyiniz.</p>
+        <ul class="square">
+          <% @topic.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div>
+      <%= f.label :body %>
+      <%= f.text_area :body %>
+    </div>
+
+    <div>
+      <%= f.submit class: 'small button right'%>
+    </div>
+  <% end %>
+</div>

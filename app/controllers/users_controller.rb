@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :select_user, only: [:show, :edit, :update, :destroy]
-  before_action :allowed?, only: [:edit, :create, :destroy]
+  before_action only: [:edit, :update, :destroy] do
+    validate_permission!(set_topic.user)
+  end
 
   def new
     @user = User.new
