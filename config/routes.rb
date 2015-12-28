@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resource :session, only:[:new, :create, :destroy]
   get '/oturum_ac', to: 'sessions#new', as: :login
-  get '/oturumu_kapat', to: 'sessions#destroy', as: :logout
+  delete '/oturumu_kapat', to: 'sessions#destroy', as: :logout
 
   #/users/new adresini /kaydol a yönlendir
   get '/users/new', to: redirect('/kaydol')

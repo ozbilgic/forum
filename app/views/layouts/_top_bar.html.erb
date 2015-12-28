@@ -18,9 +18,9 @@
             </li>
         <% else %>
             <li class="divider"></li>
-            <li><a href="#">Kaydol</a></li>
+            <li><%= link_to 'Kaydol', register_path %></li>
             <li class="divider"></li>
-            <li><a href="#">Oturum Aç</a></li>
+            <li><%= link_to 'Oturum Aç', login_path %></li>
             <li class="divider"></li>
         <% end %>
       </ul>
