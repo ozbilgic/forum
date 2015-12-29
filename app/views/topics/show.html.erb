@@ -1,2 +1,27 @@
 <!-- syntax_highlighting: html -->
-<p id="notice"><%= notice %></p>
+<div class="topics panel columns">
+  <h2><%= @topic.title %></h2>
+  <p><%= @topic.body %></p>
+  
+  <div class="details">
+    <span class="forum-name">
+      <%= link_to @topic.forum.name, @topic.forum %>
+    </span>
+    <%= link_to_unless_current @topic.user.username, profile_path(@topic.user) %>
+    tarafından <%= time_ago_in_words @topic.created_at %> önce gönderildi.
+  </div>
+</div>
+
+<div>
+  <%= link_to 'Yorum Ekle', '#', class: 'tiny button' if signed_in? %>
+  <% if current_user == @topic.user %>
+    <%= link_to 'Düzenle', edit_topic_path(@topic), class: 'tiny button' %>
+    <%= link_to 'Sil', @topic, method: :delete, class: 'tiny button alert',
+                               data: {confirm: 'Konuyu silmek istediğinize emin misiniz?'} %>
+  <% end %>
+</div>
+
+<div class="comments">
+  <h2>Yorumlar (#)</h2><hr>
+  <p>Yorumlar listesi...</p>
+</div>
