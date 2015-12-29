@@ -1,7 +1,13 @@
 <!-- syntax_highlighting: html -->
 <% content_for(:forum_content) do %>
   <div class="large-12 columns">
-    <h1>Hoş Geldiniz.</h1>
-    <p>Mesaj alanı</p>
+    <h1>Hoş Geldiniz.</h1><hr>
+    <div class="topics panel columns">
+      <% if @topics.any? %>
+        <%= render @topics %>
+      <% else %>
+        <p>Henüz hiçbir konu açılmamış.</p>
+      <% end %>
+    </div>
   </div>
 <% end %>
