@@ -29,6 +29,17 @@ Rails.application.routes.draw do
   
   resources :topics, except: [:index, :new, :create], 
                      path: 'konular', 
-                     path_names: {edit: 'duzenle'}
+                     path_names: {edit: 'duzenle'} do
+     #yorumlar
+     resources :comments, only: [:new, :create],
+                          path: 'yorumlar',
+                          path_names: {new: 'yeni'}
+                     
+  end
+  #-------------------------------------------------------------
+  #yorumlar-----------------------------------------------------
+  resources :comments, only: [:edit, :update, :destroy],
+                       path: 'yorumlar',
+                       path_names: {edit: 'duzenle'}
   #-------------------------------------------------------------
 end
