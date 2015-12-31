@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :select_user, only: [:show, :edit, :update, :destroy]
   before_action only: [:edit, :update, :destroy] do
-    validate_permission!(set_topic.user)
+    validate_permission!(set_topic)
   end
 
   def new
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
     if @user.save
       login(@user)
-      redirect_to profile_path(@user), notice: 'Aramıza hoş geldin.'
+      redirect_to root_url, notice: 'Aramıza hoş geldin.'
     else
       render :new
     end
@@ -37,15 +37,16 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to profile_path(@user), notice: 'Profil bilgileriniz güncellendi.'
+      redirect_to profile_url(@user), notice: 'Profil bilgileriniz güncellendi.'
     else
       render :edit, layout: '_profile'
     end
   end
 
   def destroy
+    logout
     @user.destroy
-    redirect_to '/'
+    redirect_to root_url
   end
 
   private
@@ -64,5 +65,9 @@ class UsersController < ApplicationController
     unless current_user == user
       redirect_to profile_path(user), alert: 'Bunu yapmaya yetkiniz yok!'
     end
+  end
+  
+  def set_topic
+      @user
   end
 end

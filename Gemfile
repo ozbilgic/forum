@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'foundation-rails'
 #use email-validator
 gem 'email_validator'
+#markdown
+gem 'redcarpet'
 
 
 # Use ActiveModel has_secure_password

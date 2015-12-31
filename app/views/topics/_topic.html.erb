@@ -2,12 +2,12 @@
 <div style="margin-bottom: 10px" class="topic columns">
   <div class="small-10 columns">
     <h5><%= link_to topic.title, topic %></h5>
-    <p><%= truncate topic.body, length: 150 %></p>
+    <p><%= markdown truncate(topic.body, length: 50, escape: false), links: false %></p>
     
     <div class="details">
       <% unless params[:action] == 'show' && params[:controller] == 'forums' %>
         <span class="forum-name">
-          <%= link_to topic.forum.name, topic.forum %>
+          <%= link_to topic.forum.name, topic.forum, class: 'badge' %>
         </span>
       <% end %>
       <%= link_to_unless_current topic.user.username, profile_path(topic.user) %> tarafından

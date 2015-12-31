@@ -1,0 +1,11 @@
+<!-- syntax_highlighting: html -->
+<% if object.errors.any? %>
+  <div class="row panel callout radius">
+    <p>Aşağıdaki hataları düzeltip, tekrar deneyin.</p>
+    <ul class="square">
+      <% object.errors.full_messages.each do |m| %>
+          <li><%= m %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

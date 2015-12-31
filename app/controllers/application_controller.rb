@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
   
+  def logout
+    session[:user_id] = nil
+  end
+  
   def validate_user!
     unless signed_in?
       #oturum açılmamışsa giriş paneline yönlendirir.

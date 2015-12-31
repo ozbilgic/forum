@@ -1,16 +1,7 @@
 <!-- syntax_highlighting: html -->
 <div class="large-12 medium-12 medium-centered columns">
-  <%= form_for([@forum, @topic]) do |f| %>
-    <% if @topic.errors.any? %>
-      <div class="row panel callout radius">
-        <p>Aşağıdaki hataları düzeltip tekrar deneyiniz.</p>
-        <ul class="square">
-          <% @topic.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <%= form_for form_params(@forum, @topic) do |f| %>
+    <%= render 'layouts/form_errors', object: @topic %>
     
     <div>
       <%= f.label :title %>

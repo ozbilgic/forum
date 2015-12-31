@@ -1,7 +1,8 @@
 <!-- syntax_highlighting: html -->
+<%= provide :title, 'Konular' %>
 <div class="topics panel columns">
   <h2><%= @topic.title %></h2>
-  <p><%= @topic.body %></p>
+  <p><%= markdown @topic.body %></p>
   
   <div class="details">
     <span class="forum-name">
